@@ -39,3 +39,30 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Cache and temporary files
+.cache/
+.tmp/
+.temp/
+.swc/
+
+# Storybook (블로그 프로젝트에서 사용할 수 있음)
+storybook-static/
+
+# MDX cache (블로그에서 MDX 사용 시)
+.mdx-cache/
+
+# TypeScript declaration maps
+*.d.ts.map
+
+# Tailwind CSS generated files
+tailwind.config.js.map
+
+# Fonts(License 이슈)
+/src/app/fonts/*

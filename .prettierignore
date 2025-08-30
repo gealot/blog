@@ -1,0 +1,125 @@
+# Build outputs
+.next/
+out/
+dist/
+build/
+coverage/
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Environment files
+.env*
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+.yarn/
+
+# Cache directories
+.cache/
+.tmp/
+.temp/
+.swc/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Generated files
+public/sitemap.xml
+public/robots.txt
+public/sw.js
+public/workbox-*.js
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Binary files and assets (already formatted)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.ico
+*.pdf
+*.zip
+*.tar
+*.gz
+*.webp
+*.avif
+
+# Font files
+*.woff
+*.woff2
+*.ttf
+*.otf
+*.eot
+
+# Video and audio files
+*.mp4
+*.webm
+*.mov
+*.avi
+*.mp3
+*.wav
+*.ogg
+
+# Data files
+*.csv
+*.json
+*.xml
+*.sql
+
+# Documentation that shouldn't be formatted
+CHANGELOG.md
+LICENSE
+LICENSE.md
+
+# Lock files and auto-generated configs
+.eslintcache
+tsconfig.tsbuildinfo
+
+# Storybook
+storybook-static/
+
+# Testing
+__snapshots__/
+.nyc_output/
+
+# Vercel
+.vercel/
+
+# Tailwind CSS generated files
+tailwind.config.js.map
+
+# MDX cache (if any)
+.mdx-cache/
+
+# TypeScript generated files
+*.d.ts.map
+
+# ESLint cache
+.eslintcache
+
+# Next.js specific
+.next-env.d.ts

@@ -1,0 +1,83 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# 최상위 설정 파일임을 명시
+root = true
+
+# 모든 파일에 적용되는 기본 설정
+[*]
+# 문자 인코딩
+charset = utf-8
+# 줄 끝 문자 (LF: Unix/Linux/macOS 방식)
+end_of_line = lf
+# 파일 끝에 빈 줄 추가
+insert_final_newline = true
+# 줄 끝 공백 제거
+trim_trailing_whitespace = true
+
+# JavaScript, TypeScript, JSX, TSX 파일
+[*.{js,jsx,ts,tsx,mjs,cjs}]
+# 들여쓰기 스타일 (공백 사용)
+indent_style = space
+# 들여쓰기 크기
+indent_size = 2
+# 최대 줄 길이 (Prettier와 동일)
+max_line_length = 80
+
+# JSON 파일 (package.json, tsconfig.json 등)
+[*.{json,jsonc}]
+indent_style = space
+indent_size = 2
+
+# YAML 파일 (GitHub Actions, Docker Compose 등)
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# CSS, SCSS, Sass 파일
+[*.{css,scss,sass,less}]
+indent_style = space
+indent_size = 2
+
+# HTML 파일
+[*.{html,htm}]
+indent_style = space
+indent_size = 2
+
+# Markdown 파일
+[*.{md,mdx}]
+indent_style = space
+indent_size = 2
+# 마크다운에서는 줄 끝 공백이 의미가 있을 수 있음 (줄바꿈)
+trim_trailing_whitespace = false
+# 최대 줄 길이를 길게 설정 (Prettier 설정과 일치)
+max_line_length = 70
+
+# 설정 파일들
+[*.{toml,ini,cfg}]
+indent_style = space
+indent_size = 2
+
+# Shell 스크립트
+[*.{sh,bash,zsh}]
+indent_style = space
+indent_size = 2
+
+# Python 파일 (혹시 필요할 경우)
+[*.py]
+indent_style = space
+indent_size = 4
+max_line_length = 88
+
+# Makefile (탭 문자 필수)
+[{Makefile,makefile,*.mk}]
+indent_style = tab
+
+# 특정 파일들에 대한 예외 설정
+[{package.json,*.lock}]
+# 패키지 매니저가 생성하는 파일들은 건드리지 않음
+insert_final_newline = unset
+
+# 바이너리 파일 패턴 (텍스트 처리 제외)
+[*.{png,jpg,jpeg,gif,svg,ico,pdf,zip,tar,gz}]
+insert_final_newline = unset
+trim_trailing_whitespace = unset

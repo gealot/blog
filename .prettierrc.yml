@@ -1,0 +1,161 @@
+# ===== Prettier 설정 파일 (YAML 형식) =====
+# Next.js 15 + TailwindCSS 4.1 + FSD 아키텍처 최적화
+
+# 기본 포맷팅 옵션
+semi: true
+trailingComma: es5
+singleQuote: false
+printWidth: 100
+tabWidth: 2
+useTabs: false
+bracketSpacing: true
+bracketSameLine: false
+arrowParens: avoid
+endOfLine: lf
+quoteProps: as-needed
+jsxSingleQuote: false
+embeddedLanguageFormatting: auto
+proseWrap: preserve
+htmlWhitespaceSensitivity: css
+
+# 플러그인 설정
+plugins:
+  - "@ianvs/prettier-plugin-sort-imports" # Import 정렬
+  - "prettier-plugin-tailwindcss" # TailwindCSS 클래스 정렬
+
+# Import 정렬 순서 (FSD 아키텍처 기반)
+importOrder:
+  # ===== 1. React 생태계 =====
+  - "^(react/(.*)$)|^(react$)"
+  - "^(react-dom/(.*)$)|^(react-dom$)"
+
+  # ===== 2. Next.js 생태계 =====
+  - "^(next/(.*)$)|^(next$)"
+
+  # ===== 3. 빈 줄 =====
+  - ""
+
+  # ===== 4. Node.js 내장 모듈 =====
+  - "<BUILTIN_MODULES>"
+
+  # ===== 5. 외부 라이브러리 (Third-party) =====
+  - "<THIRD_PARTY_MODULES>"
+
+  # ===== 6. 빈 줄 =====
+  - ""
+
+  # ===== 7. FSD App Layer (@/app/*) =====
+  - "^@/app/(.*)$"
+  - "^@/src/app/(.*)$"
+
+  # ===== 8. FSD Widgets Layer (@/widgets/*) =====
+  - "^@/widgets/(.*)$"
+
+  # ===== 9. FSD Features Layer (@/features/*) =====
+  - "^@/features/(.*)$"
+
+  # ===== 10. FSD Entities Layer (@/entities/*) =====
+  - "^@/entities/(.*)$"
+
+  # ===== 11. 빈 줄 =====
+  - ""
+
+  # ===== 12. FSD Shared Layer - 단축 alias 우선 =====
+  - "^@/ui$"
+  - "^@/ui/(.*)$"
+  - "^@/lib$"
+  - "^@/lib/(.*)$"
+  - "^@/hooks$"
+  - "^@/hooks/(.*)$"
+  - "^@/config$"
+  - "^@/config/(.*)$"
+  - "^@/types$"
+  - "^@/utils$"
+
+  # ===== 13. FSD Shared Layer - 전체 경로 =====
+  - "^@/shared/(.*)$"
+
+  # ===== 14. 빈 줄 =====
+  - ""
+
+  # ===== 15. 컨텐츠 및 정적 파일 =====
+  - "^@/posts/(.*)$"
+  - "^@/public/(.*)$"
+
+  # ===== 16. 기타 절대 경로 (@/*) =====
+  - "^@/(.*)$"
+
+  # ===== 17. 빈 줄 =====
+  - ""
+
+  # ===== 18. 상대 경로 imports =====
+  - "^[./]"
+
+# Import 정렬 파서 설정
+importOrderParserPlugins:
+  - typescript
+  - jsx
+  - decorators-legacy
+
+importOrderTypeScriptVersion: "5.9.2"
+
+# TailwindCSS 4.1 설정
+tailwindStylesheet: "./src/app/globals.css" # TailwindCSS 4에서는 tailwindConfig 대신 이것을 사용
+tailwindFunctions:
+  - clsx
+  - cn
+  - cva
+  - tw
+  - tv # 추가된 함수
+tailwindAttributes:
+  - class
+  - className
+  - classList # 추가된 속성
+tailwindPreserveWhitespace: false
+
+# 파일별 오버라이드 설정
+overrides:
+  # Markdown 파일
+  - files: "*.md"
+    options:
+      printWidth: 80
+      proseWrap: always
+      tabWidth: 2
+
+  # MDX 파일
+  - files: "*.mdx"
+    options:
+      printWidth: 80
+      proseWrap: preserve
+      tabWidth: 2
+
+  # JSON 파일
+  - files: "*.json"
+    options:
+      printWidth: 100
+      tabWidth: 2
+      trailingComma: none
+
+  # CSS/SCSS 파일
+  - files: ["*.css", "*.scss"]
+    options:
+      singleQuote: false
+      printWidth: 120
+
+  # YAML 파일
+  - files: ["*.yml", "*.yaml"]
+    options:
+      printWidth: 80
+      tabWidth: 2
+
+  # package.json
+  - files: "package.json"
+    options:
+      tabWidth: 2
+      useTabs: false
+
+  # TypeScript/JavaScript 설정 파일
+  - files: ["*.config.{js,ts,mjs}", "eslint.config.{js,mjs}"]
+    options:
+      printWidth: 100
+      tabWidth: 2

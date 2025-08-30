@@ -1,27 +1,166 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    // 모던 브라우저 지원 (Chrome 91+, Safari 15+, Firefox 90+)
+    "target": "ES2022",
+    // Next.js 15, React 19 등 새 기능 활용을 위해 ES2022, ES2023 추가
+    "lib": ["dom", "dom.iterable", "es2022", "es2023", "esnext"],
+
+    // 기본 컴파일러 옵션
+    // 자바스크립트 파일 허용
     "allowJs": true,
+    // 라이브러리 체크 건너뛰기
     "skipLibCheck": true,
-    "strict": true,
+    // 컴파일 결과 생성 안함
     "noEmit": true,
+    // 모듈 시스템 호환성 확장
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
+    // 합성 기본 가져오기 허용
+    "allowSyntheticDefaultImports": true,
+    // JSON 모듈 허용
     "resolveJsonModule": true,
+    // 격리된 모듈 허용
     "isolatedModules": true,
+
+    // 모듈 시스템 옵션(Next.js 15 최적화)
+    // ESM 모듈 시스템 사용
+    "module": "esnext",
+    // 모듈 해석 방법 설정(bundler 사용)
+    "moduleResolution": "bundler",
+    // 모듈 감지 강제
+    "moduleDetection": "force",
+
+    // JSX 설정
+    // JSX 코드를 자바스크립트에 그대로 전달하여 브라우저에서 렌더링
     "jsx": "preserve",
+    // 전역 파일에서 JSX를 React로 가져옴(default로 추론)
+    "jsxImportSource": "react",
+
+    // 타입 안전성 강화
+    "strict": true,
+    // 배열이나 객체에서 인덱스로 접근할 때 결과가 항상 존재한다고 가정하지 않고, undefined 가능성을 타입에 반영
+    "noUncheckedIndexedAccess": true,
+    // 부모 클래스 메서드를 자식 클래스에서 오버라이드할 때 반드시 override 키워드를 명시해야 함
+    "noImplicitOverride": true,
+    // 함수의 모든 코드 경로가 값을 반환하지 않으면 에러를 발생
+    "noImplicitReturns": true,
+    // switch 문에서 break나 return 없이 다음 case로 넘어가는 경우를 금지
+    "noFallthroughCasesInSwitch": true,
+    // 타입 추론이 불가능해서 any로 추론될 경우 에러를 발생
+    "noImplicitAny": true,
+    // this가 암묵적으로 any로 추론되는 경우 에러를 발생
+    "noImplicitThis": true,
+    // null과 undefined가 모든 타입에 자동 포함되지 않고, 명시적으로 선언해야만 사용 가능
+    "strictNullChecks": true,
+    // 함수 타입의 매개변수 검사 시 공변성(covariant) 대신 반공변성(contravariant) 규칙을 적용해 타입 안전성을 높임
+    "strictFunctionTypes": true,
+    // Function.prototype.call, apply, bind 메서드에 타입 검사를 엄격하게 적용
+    "strictBindCallApply": true,
+    // 클래스의 인스턴스 프로퍼티는 생성자에서 반드시 초기화되거나 ! non-null 단언을 붙여야 함
+    "strictPropertyInitialization": true,
+    // 모든 파일에 자동으로 "use strict"; 모드를 적용(자바스크립트 런타임의 엄격 모드)
+    "alwaysStrict": true,
+
+    // 추가 검사 옵션
+    // 선택적 프로퍼티 타입을 명시적으로 지정(의도하지 않은 undefined를 파라미터로 전달하는 것을 방지)
+    "exactOptionalPropertyTypes": true,
+    // 속성 접근 시 일관성 보장(Obj.key 사용 시 Obj['key']와 동일하게 정의되지 않은 필드 접근 금지)
+    "noPropertyAccessFromIndexSignature": false, // MDX 파일 접근을 위해 false
+
+    // 성능 및 개발 경험 개선
     "incremental": true,
+    "tsBuildInfoFile": ".next/cache/tsbuildinfo",
+    "removeComments": true,
+    "preserveConstEnums": true,
+
+    // Next.js 15 App Router 지원
     "plugins": [
       {
         "name": "next"
       }
     ],
+
+    // 경로 별칭
+    "baseUrl": ".",
+
+    // FSD 레이어별 경로 매핑 및 자주 사용되는 경로들
     "paths": {
-      "@/*": ["./src/*"]
-    }
+      // 루트 경로 (모든 src 하위 접근)
+      "@/*": ["./src/*"],
+
+      // FSD 레이어별 경로
+      "@/shared/*": ["./src/shared/*"],
+      "@/entities/*": ["./src/entities/*"],
+      "@/features/*": ["./src/features/*"],
+      "@/widgets/*": ["./src/widgets/*"],
+      "@/app/*": ["./src/app/*"],
+
+      // Shadcn/ui 기초 컴포넌트(Primitives) 경로
+      "@/primitives": ["./src/shared/ui/primitives"],
+      "@/primitives/*": ["./src/shared/ui/primitives/*"],
+
+      // 컴포넌트 경로(Primitives를 조합하여 만든 컴포넌트들)
+      "@/components": ["./src/shared/ui/components"],
+      "@/components/*": ["./src/shared/ui/components/*"],
+
+      // UI 시스템
+      "@/ui": ["./src/shared/ui"],
+      "@/ui/*": ["./src/shared/ui/*"],
+
+      // 컨텐츠 및 정적 파일
+      "@/posts/*": ["./src/posts/*"],
+      "@/public/*": ["./public/*"],
+
+      // 자주 사용되는 shared 하위 경로들 (단축 alias)
+      "@/lib": ["./src/shared/lib"],
+      "@/lib/*": ["./src/shared/lib/*"],
+      "@/hooks": ["./src/shared/hooks"],
+      "@/hooks/*": ["./src/shared/hooks/*"],
+      "@/config": ["./src/shared/config"],
+      "@/config/*": ["./src/shared/config/*"],
+      "@/types": ["./src/shared/lib/types"],
+      "@/types/*": ["./src/shared/lib/types/*"],
+      "@/utils": ["./src/shared/lib/utils"],
+      "@/utils/*": ["./src/shared/lib/utils/*"],
+    },
+
+    // 출력 설정
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": true,
+    "outDir": ".next",
+
+    // 실험적 기능 (Next.js 15 호환)
+    "allowImportingTsExtensions": false,
+    "verbatimModuleSyntax": false
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.mjs",
+    ".next/types/**/*.ts",
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next",
+    "out",
+    "build",
+    "dist",
+    "coverage",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx"
+  ],
+  "ts-node": {
+    "esm": true,
+    "transpileOnly": true,
+    "compilerOptions": {
+      "module": "esnext",
+      "target": "es2022"
+    }
+  }
 }

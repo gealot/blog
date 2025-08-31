@@ -37,6 +37,12 @@
   --font-style-italic: italic;
 
   /* ===== COLOR SYSTEM TOKENS ===== */
+  /* 1. 색상 시스템 토큰 */
+  --color-success: var(--color-emerald-500);
+  --color-warning: var(--color-amber-500);
+  --color-error: var(--color-red-500);
+  --color-info: var(--color-cyan-500);
+
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -153,6 +159,10 @@
     @apply bg-background text-foreground;
   }
 
+  code {
+    font-family: var(--font-family-mono);
+  }
+
   /* ===== FONT UTILITY CLASSES ===== */
 
   /* Pretendard (Sans) 폰트 클래스 */
@@ -246,40 +256,40 @@
   }
 
   /* IBM Plex Mono 폰트 클래스 */
-  .font-mono {
+  .font-code {
     font-family: var(--font-family-mono);
   }
-  .font-mono-100 {
+  .font-code-100 {
     font-family: var(--font-family-mono);
     font-weight: var(--font-weight-thin);
   }
-  .font-mono-200 {
+  .font-code-200 {
     font-family: var(--font-family-mono);
     font-weight: var(--font-weight-extralight);
   }
-  .font-mono-300 {
+  .font-code-300 {
     font-family: var(--font-family-mono);
     font-weight: var(--font-weight-light);
   }
-  .font-mono-400 {
+  .font-code-400 {
     font-family: var(--font-family-mono);
     font-weight: var(--font-weight-normal);
   }
-  .font-mono-500 {
+  .font-code-500 {
     font-family: var(--font-family-mono);
     font-weight: var(--font-weight-medium);
   }
-  .font-mono-600 {
+  .font-code-600 {
     font-family: var(--font-family-mono);
     font-weight: var(--font-weight-semibold);
   }
-  .font-mono-700 {
+  .font-code-700 {
     font-family: var(--font-family-mono);
     font-weight: var(--font-weight-bold);
   }
 
   /* IBM Plex Mono 이탤릭 스타일 클래스 */
-  .font-mono-italic {
+  .font-code-italic {
     font-family: var(--font-family-mono);
     font-style: var(--font-style-italic);
   }

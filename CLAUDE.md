@@ -40,6 +40,10 @@ service development cycle.
 - **Icons**: Lucide React
 - **Content**: MDX support with gray-matter, rehype plugins
 - **Search**: Fuse.js for client-side search
+- **Theme**: next-themes for dark/light mode support
+- **Typography**: Variable fonts (Pretendard, Noto Serif KR, JetBrains Mono,
+  etc.)
+- **Date Handling**: date-fns for date utilities
 - **Package Manager**: pnpm with workspace setup
 - **Code Quality**: ESLint, Prettier, Husky, lint-staged, Commitlint
 
@@ -65,8 +69,12 @@ The project follows Feature-Sliced Design with these layers:
 - `src/entities/` - Business entities (post)
 - `src/shared/` - Reusable code across layers
   - `config/` - Application configuration (site.ts)
-  - `ui/` - shadcn/ui components
+  - `ui/` - shadcn/ui components (components/, primitives/)
   - `lib/` - Utilities and types
+    - `theme/` - Theme system (config, provider, store, utils)
+    - `utils/` - Utility functions (cn.ts, fonts.ts)
+    - `types/` - Type definitions (theme.ts)
+  - `hooks/` - React hooks (useTheme.ts)
 - `src/posts/` - MDX blog posts
 
 ### Path Aliases
@@ -86,12 +94,34 @@ The TypeScript configuration includes comprehensive path aliases:
 - `@/types` → `src/shared/lib/types`
 - `@/utils` → `src/shared/lib/utils`
 
+### Typography System
+
+- **Variable Fonts**: Modern web font optimization
+  - Pretendard Variable - Primary Korean font
+  - Noto Serif KR Variable - Serif Korean font
+  - NanumSquare Neo Variable - Display Korean font
+  - JetBrains Mono Variable - Code font with italic support
+  - IBM Plex Mono - Alternative monospace font family
+- Font files located in `src/app/fonts/`
+- Font utilities in `src/shared/lib/utils/fonts.ts`
+
 ### Content Management
 
 - Blog posts are written in MDX format in `src/posts/`
 - MDX processing includes syntax highlighting (rehype-highlight), auto-linking
   headings, and slug generation
 - Site configuration is centralized in `src/shared/config/site.ts`
+
+### Theme System
+
+- Dark/light mode support with `next-themes`
+- Theme configuration in `src/shared/lib/theme/`
+  - `theme.config.ts` - Theme settings
+  - `theme.provider.tsx` - Context provider
+  - `theme.store.ts` - State management
+  - `theme.script.tsx` - SSR-safe theme script
+  - `theme.utils.ts` - Theme utilities
+- Custom theme hook: `useTheme` in `src/shared/hooks/`
 
 ### Code Quality
 
